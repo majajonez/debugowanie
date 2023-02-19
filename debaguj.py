@@ -1,15 +1,15 @@
 from time import perf_counter_ns
 
-def debug(funkcja):
-    def wewnetrzna(*args):
-        print("nazwa f: " + str(funkcja.__name__))           # wypisanie nazwy wywolanej funkcji
+def debug(function):
+    def internal_f(*args):
+        print("name f: " + str(function.__name__))           # wypisanie nazwy wywolanej funkcji
         t = perf_counter_ns()
-        w = funkcja(*args)
+        r = function(*args)
         t = perf_counter_ns() - t
-        print('parametry funkcji:')
+        print('function parameters:')
         for a in args:
             print(a)                                        # wypisanie parametrów funkcji
-        print("wynik: " + str(w))                           # wypisanie wyniku funkcji
-        print("czas w milisekundach: " + str(t /1000000))      # czas wykonywania funkcji
-        return w
-    return wewnetrzna
+        print("result: " + str(r))                           # wypisanie wyniku funkcji
+        print("time in milliseconds: " + str(t /1000000))      # czas wykonywania funkcji
+        return r
+    return internal_f
